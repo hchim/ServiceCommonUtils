@@ -1,0 +1,19 @@
+{
+  "name": "servicecommonutils",
+  "version": "0.0.1",
+  "description": "Common utils for services.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.hch.im:Hui/servicecommonutils.git"
+  },
+  "author": "Hui Chen",
+  "license": "MIT",
+  "dependencies": {
+    "mocha": "~3.0.0",
+    "chai": "*"
+  }
+}
