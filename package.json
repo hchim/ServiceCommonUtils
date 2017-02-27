@@ -14,6 +14,8 @@
   "license": "MIT",
   "dependencies": {
     "mocha": "~3.0.0",
-    "chai": "*"
+    "chai": "*",
+    "redis": "~2.6.5",
+    "metricsclient": "git+ssh://git@git.hch.im:service-infrastructure/metricserviceclient.git"
   }
 }

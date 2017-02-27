@@ -5,7 +5,7 @@ var assert = require('assert');
 var expect = require('Chai').expect;
 var utils = require('../index');
 
-describe('metrics functions', function () {
+describe('nestedReqField functions', function () {
     describe('nestedReqField OKhttp', function () {
         it('should parse nested field for OKHttp', function (done) {
             body = {
