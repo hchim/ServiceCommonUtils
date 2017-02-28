@@ -19,8 +19,10 @@ module.exports = {
         //node.js request
         if (body[composedField]) {
             return body[composedField];
-        } else { //OKhttp
+        } else if (body[fieldName1]) { //OKhttp
             return body[fieldName1][fieldName2];
+        } else {
+            return null
         }
     },
     /**
