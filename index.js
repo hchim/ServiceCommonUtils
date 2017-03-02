@@ -40,5 +40,34 @@ module.exports = {
         });
 
         return redisClient;
+    },
+    /**
+     * Encode response body
+     * @param res the json object to return
+     */
+    encodeResponseBody: function (req, json) {
+        if (req.headers['is-internal-request'] === 'YES') {
+            return json
+        }
+
+        var payload = new Buffer(JSON.stringify(json)).toString('base64')
+        return {payload: payload}
+    },
+    /**
+     * Decode the payload of the request body
+     * @param req
+     */
+    decodeRequestBody: function (req) {
+        var method = req.method.toLocaleLowerCase()
+        if (method == 'put' || (method == 'post' && !req.is('multipart'))) {
+            if (req.body.payload) {
+                var buffer = new Buffer(req.body.payload, 'base64')
+                var payload = buffer.toString('utf-8');
+                var json = JSON.parse(payload);
+                if (json) {
+                    req.body = json;
+                }
+            }
+        }
     }
 };
