@@ -38,7 +38,9 @@ module.exports = {
                 //nothing
             })
         });
-
+        redisClient.on("connect", function () {
+            console.log('Connected to redis host: ' + host + ':' + port);
+        })
         return redisClient;
     },
     /**
