@@ -10,6 +10,10 @@ describe('createRedisClient functions', function () {
         var client = utils.createRedisClient('127.0.0.1', 6379);
         expect(client).to.not.be.undefined;
         expect(client).to.not.be.null;
-        done()
+        client.set('test', 'teststr')
+        client.get('test', function (err, reply) {
+            expect(reply).to.equal('teststr')
+            done()
+        })
     })
 })
