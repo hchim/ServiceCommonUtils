@@ -103,12 +103,10 @@ module.exports = {
                     default: "daily"
                 }
             },
-            db: {
-                mongodb: {
-                    url: {
-                        doc: "mongodb url",
-                        "default": "mongodb://localhost/sleepdb"
-                    }
+            mongodb: {
+                url: {
+                    doc: "mongodb url",
+                    "default": "mongodb://localhost/sleepdb"
                 }
             },
             redis: {
