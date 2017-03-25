@@ -67,5 +67,60 @@ module.exports = {
                 }
             }
         }
+    },
+    /**
+     * Return the common configs of all the services.
+     */
+    commonConfigs: function () {
+        return {
+            env: {
+                doc: "The applicaton environment.",
+                format: ["production", "development", "test"],
+                default: "development",
+                env: "NODE_ENV"
+            },
+            server: {
+                ip: {
+                    doc: "IP address to bind",
+                    format: 'ipaddress',
+                    default: '0.0.0.0',
+                    env: "IP"
+                },
+                port: {
+                    doc: "port to bind",
+                    format: 'port',
+                    default: 3000,
+                    env: "PORT"
+                }
+            },
+            log: {
+                dateformat: {
+                    doc: "date format",
+                    default: 'YYYY-MM-DD'
+                },
+                frequency: {
+                    doc: 'the log file rotate frequency',
+                    default: "daily"
+                }
+            },
+            db: {
+                mongodb: {
+                    url: {
+                        doc: "mongodb url",
+                        "default": "mongodb://localhost/sleepdb"
+                    }
+                }
+            },
+            redis: {
+                host: '127.0.0.1',
+                port: 6379
+            },
+            endpoint: {
+                metricservice: 'http://localhost:3112'
+            },
+            service: {
+                name: 'Service' //service name, should be overriden
+            }
+        };
     }
 };
