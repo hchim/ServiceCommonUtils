@@ -118,6 +118,48 @@ module.exports = {
             },
             service: {
                 name: 'Service' //service name, should be overriden
+            },
+            "upload_dir": {
+                "doc": "Upload cache file directory",
+                "default": "cache_files/"
+            },
+            "aws": {
+                "s3": {
+                    "header": {
+                        "bucket": "sleeprecord-header",
+                        "accessKeyId": "AKIAJUG7F5Z3ZLM45HLA",
+                        "secretAccessKey": "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"
+                    }
+                },
+                "ses": {
+                    "accessKeyId": "AKIAJUG7F5Z3ZLM45HLA",
+                    "secretAccessKey": "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"
+                }
+            },
+            "email": {
+                "from_email": "aiden@sleepaiden.com"
+            },
+            "email_template": {
+                "register": {
+                    "subject": "Welcome to SleepRecord",
+                    "html": "Hi %s,<br>Welcome to use SleepRecord.<br>Please input the code to verify your email: %s<br>Thanks<br>The SleepRecord Team"
+                },
+                "reset_email": {
+                    "subject": "Reset your password",
+                    "html": "Hi %s,<br>Please input this security code to reset your password: %s<br>Thanks<br>The SleepRecord Team"
+                }
+            },
+            "google": {
+                "client_id": "894802459298-3637204prl1d2vnce72bfjeptjivmg18.apps.googleusercontent.com",
+                "secret": "AIzaSyDGvFHSmqeOVtLmz7s18SSbrLxMYDrzEEM"
+            },
+            "facebook": {
+                "app_id": "1891279461107263",
+                "secret": "aaa03e9f3f84ce950826fed305fa477d"
+            },
+            "wechat": {
+                "app_id": "",
+                "secret": ""
             }
         };
     }
