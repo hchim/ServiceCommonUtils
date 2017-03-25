@@ -15,7 +15,7 @@
   "dependencies": {
     "mocha": "~3.0.0",
     "chai": "*",
-    "redis": "~2.6.5",
+    "redis": "2.7.1",
     "metricsclient": "git+ssh://git@git.hch.im:service-infrastructure/metricserviceclient.git"
   }
 }
