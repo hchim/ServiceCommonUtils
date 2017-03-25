@@ -91,6 +91,9 @@ module.exports = {
                     format: 'port',
                     default: 3000,
                     env: "PORT"
+                },
+                session: {
+                    auth_token_expire: 30 * 24 * 60 * 60
                 }
             },
             log: {
