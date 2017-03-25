@@ -1,5 +1,4 @@
 var redis = require('redis');
-var metric = require('metricsclient')
 
 module.exports = {
     /**
@@ -34,9 +33,6 @@ module.exports = {
         var redisClient = redis.createClient(port, host);
         redisClient.on("error", function (err) {
             console.log("Create redis client Error: " + err);
-            metric.errorMetric('IdentityService:Error:redis', err, function (err, res) {
-                //nothing
-            })
         });
         redisClient.on("connect", function () {
             console.log('Connected to redis host: ' + host + ':' + port);
