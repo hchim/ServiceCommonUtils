@@ -109,7 +109,7 @@ module.exports = {
             mongodb: {
                 url: {
                     doc: "mongodb url",
-                    "default": "mongodb://localhost/sleepdb"
+                    "default": "mongodb://localhost/test"
                 }
             },
             redis: {
