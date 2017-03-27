@@ -1,4 +1,5 @@
 var redis = require('redis');
+const winston = require('winston')
 
 module.exports = {
     /**
@@ -67,6 +68,25 @@ module.exports = {
                 }
             }
         }
+    },
+    /**
+     * Get winston obj and set the log level.
+     * 1. If LOG_LEVEL env was set, it will use this log level.
+     * 2. If env is production, log level is error
+     * 3. otherwise, log level is debug
+     * @param env
+     */
+    getWinston: function (env) {
+        if (process.env.LOG_LEVEL) {
+            winston.level = process.env.LOG_LEVEL
+        } else {
+            if (env === 'production')
+                winston.level = 'error'
+            else
+                winston.level = 'debug'
+        }
+
+        return winston
     },
     /**
      * Return the common configs of all the services.

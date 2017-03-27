@@ -15,6 +15,7 @@
   "dependencies": {
     "mocha": "~3.0.0",
     "chai": "*",
-    "redis": "2.7.1"
+    "redis": "2.7.1",
+    "winston": "2.3.1"
   }
 }
