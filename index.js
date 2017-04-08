@@ -153,6 +153,10 @@ module.exports = {
                         "accessKeyId": "AKIAJUG7F5Z3ZLM45HLA",
                         "secretAccessKey": "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"
                     }
+                },
+                "ses": {
+                    "accessKeyId": "AKIAIOMOT34K6UYYW7CQ",
+                    "secretAccessKey": "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"
                 }
             },
             "email": {
