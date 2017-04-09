@@ -1,5 +1,6 @@
 var redis = require('redis');
 const winston = require('winston')
+var AWS = require('aws-sdk');
 
 module.exports = {
     /**
@@ -87,6 +88,48 @@ module.exports = {
         }
 
         return winston
+    },
+    /**
+     * Create SES Client.
+     * @param conf
+     */
+    createSESClient: function (conf) {
+        AWS.config.update({
+            accessKeyId : conf.get('aws.ses.accessKeyId'),
+            secretAccessKey : conf.get('aws.ses.secretAccessKey'),
+            region : conf.get('aws.ses.region')
+        });
+
+        return new AWS.SES({apiVersion: 'latest'});
+    },
+    /**
+     * Send email.
+     * @param ses
+     * @param from
+     * @param to
+     * @param subject
+     * @param body : html body
+     * @param callback
+     */
+    sendEmail: function (ses, from, to, subject, body, callback) {
+        ses.sendEmail({
+            Source: from,
+            Destination: {
+                ToAddresses: [to]
+            },
+            Message: {
+                Subject: {
+                    Data: subject
+                },
+                Body: {
+                    Html: {
+                        Data: body
+                    }
+                }
+            }
+        }, function (err, data) {
+            callback(err, data);
+        });
     },
     /**
      * Return the common configs of all the services.
