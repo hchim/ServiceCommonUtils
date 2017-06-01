@@ -82,7 +82,7 @@ module.exports = {
             winston.level = process.env.LOG_LEVEL
         } else {
             if (env === 'production')
-                winston.level = 'error'
+                winston.level = 'info'
             else
                 winston.level = 'debug'
         }
