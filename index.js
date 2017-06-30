@@ -192,15 +192,15 @@ module.exports = {
             "aws": {
                 "s3": {
                     "header": {
-                        "bucket": "sleeprecord-header",
-                        "accessKeyId": "AKIAJUG7F5Z3ZLM45HLA",
-                        "secretAccessKey": "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",
+                        "bucket": "sleepaiden-header",
+                        "accessKeyId": "AKIAIWRCL3EIHF4U37DA",
+                        "secretAccessKey": "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",
                         "region": "us-west-2"
                     }
                 },
                 "ses": {
-                    "accessKeyId": "AKIAIOMOT34K6UYYW7CQ",
-                    "secretAccessKey": "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",
+                    "accessKeyId": "AKIAI6JGB7F64VKZ4SIA",
+                    "secretAccessKey": "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",
                     "region": "us-west-2"
                 }
             },
