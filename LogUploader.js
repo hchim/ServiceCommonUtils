@@ -3,7 +3,7 @@ var AWS = require('aws-sdk');
 var fs = require('fs');
 const path = require('path');
 
-AWS.config.loadFromPath('./s3Credential.json');
+AWS.config.loadFromPath(__dirname + '/s3Credential.json');
 
 var uploadLogs = function (logDir, conf, s3Client) {
     fs.readdir(logDir, function (err, files) {

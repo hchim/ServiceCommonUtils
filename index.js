@@ -96,11 +96,7 @@ module.exports = {
      * @param conf
      */
     createSESClient: function (conf) {
-        AWS.config.update({
-            accessKeyId : conf.get('aws.ses.accessKeyId'),
-            secretAccessKey : conf.get('aws.ses.secretAccessKey'),
-            region : conf.get('aws.ses.region')
-        });
+        AWS.config.loadFromPath(__dirname + '/sesCredential.json');
 
         return new AWS.SES({apiVersion: 'latest'});
     },
@@ -139,7 +135,7 @@ module.exports = {
      * @returns {S3}
      */
     createS3Client: function (bucket) {
-        AWS.config.loadFromPath('./s3Credential.json');
+        AWS.config.loadFromPath(__dirname + '/s3Credential.json');
         return new AWS.S3({
             apiVersion: '2006-03-01',
             params: {
