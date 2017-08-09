@@ -1,8 +1,10 @@
 var redis = require('redis');
 const winston = require('winston')
 var AWS = require('aws-sdk');
+var LogUploader = require('./LogUploader');
 
 module.exports = {
+    LogUploader: LogUploader,
     /**
      * Retrieve the nested field of the request body.
      * OKHttp (Android client) and simple request (test) sends nested field in different format.
@@ -132,6 +134,20 @@ module.exports = {
         });
     },
     /**
+     * Create a S3 client.
+     * @param bucket
+     * @returns {S3}
+     */
+    createS3Client: function (bucket) {
+        AWS.config.loadFromPath('./s3Credential.json');
+        return new AWS.S3({
+            apiVersion: '2006-03-01',
+            params: {
+                Bucket: bucket
+            }
+        });
+    },
+    /**
      * Return the common configs of all the services.
      */
     commonConfigs: function () {
@@ -193,6 +209,12 @@ module.exports = {
                 "s3": {
                     "header": {
                         "bucket": "sleepaiden-header",
+                        "accessKeyId": "AKIAIWRCL3EIHF4U37DA",
+                        "secretAccessKey": "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",
+                        "region": "us-west-2"
+                    },
+                    "logs": {
+                        "bucket": "sleepaiden-logs",
                         "accessKeyId": "AKIAIWRCL3EIHF4U37DA",
                         "secretAccessKey": "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",
                         "region": "us-west-2"
