@@ -9,8 +9,8 @@ function connectDB(conf) {
 
     var options = {
         useMongoClient: true,
-        auto_reconnect:true,
-        socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 }
+        keepAlive: true,
+        socketTimeoutMS: 30000
     };
 
     mongoose.connect(dbUrl, options, function (error) {
