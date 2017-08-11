@@ -2,9 +2,14 @@ var redis = require('redis');
 const winston = require('winston')
 var AWS = require('aws-sdk');
 var LogUploader = require('./LogUploader');
+var MongooseHelper = require('./MongooseHelper');
 
 module.exports = {
     LogUploader: LogUploader,
+    /**
+     * Function connect to mongodb.
+     */
+    connectDB: MongooseHelper.connectDB,
     /**
      * Retrieve the nested field of the request body.
      * OKHttp (Android client) and simple request (test) sends nested field in different format.
