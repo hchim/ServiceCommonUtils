@@ -1,4 +1,6 @@
 var mongoose = require('mongoose');
+const winston = require('winston')
+
 mongoose.Promise = require('bluebird');
 
 function connectDB(conf) {
