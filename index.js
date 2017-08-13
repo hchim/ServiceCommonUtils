@@ -34,19 +34,22 @@ module.exports = {
         }
     },
     /**
-     * Create redis client.
+     * Return redis client, create it if was not created.
      * @param host
      * @param port
      */
     createRedisClient: function (host, port) {
-        var redisClient = redis.createClient(port, host);
-        redisClient.on("error", function (err) {
-            console.log("Create redis client Error: " + err);
-        });
-        redisClient.on("connect", function () {
-            console.log('Connected to redis host: ' + host + ':' + port);
-        })
-        return redisClient;
+        if (!this.redisClient) {
+            var redisClient = redis.createClient(port, host);
+            redisClient.on("error", function (err) {
+                console.log("Create redis client Error: " + err);
+            });
+            redisClient.on("connect", function () {
+                console.log('Connected to redis host: ' + host + ':' + port);
+            });
+            this.redisClient = redisClient;
+        }
+        return this.redisClient;
     },
     /**
      * Encode response body
@@ -101,9 +104,11 @@ module.exports = {
      * @param conf
      */
     createSESClient: function (conf) {
-        AWS.config.loadFromPath(__dirname + '/sesCredential.json');
-
-        return new AWS.SES({apiVersion: 'latest'});
+        if (!this.sesClient) {
+            AWS.config.loadFromPath(__dirname + '/sesCredential.json');
+            this.sesClient = new AWS.SES({apiVersion: 'latest'});
+        }
+        return this.sesClient;
     },
     /**
      * Send email.
@@ -140,13 +145,16 @@ module.exports = {
      * @returns {S3}
      */
     createS3Client: function (bucket) {
-        AWS.config.loadFromPath(__dirname + '/s3Credential.json');
-        return new AWS.S3({
-            apiVersion: '2006-03-01',
-            params: {
-                Bucket: bucket
-            }
-        });
+        if (!this.s3Client) {
+            AWS.config.loadFromPath(__dirname + '/s3Credential.json');
+            this.s3Client = new AWS.S3({
+                apiVersion: '2006-03-01',
+                params: {
+                    Bucket: bucket
+                }
+            });
+        }
+        return this.s3Client;
     },
     /**
      * Return the common configs of all the services.
