@@ -1,10 +1,11 @@
-var LogUploader = require('../LogUploader')
-var fs = require('fs');
-var assert = require('assert');
-var expect = require('Chai').expect;
-var convict = require('convict');
+import {LogUploader} from '../index';
 
-var conf = convict({
+const fs = require('fs');
+const assert = require('assert');
+const expect = require('Chai').expect;
+const convict = require('convict');
+
+const conf = convict({
     aws: {
         s3: {
             logs: {
@@ -12,20 +13,20 @@ var conf = convict({
             }
         }
     }
-})
+});
 
-describe('Upload log to s3 bucket', function () {
-    it('Upload and delete the file.', function (done) {
-        var file = Date.getTime() + 'test.log.gz'
-        fs.writeFile(file, 'Test file.', null)
-        var uploader = new LogUploader(5000, '.', conf)
+describe('Upload log to s3 bucket', () => {
+    it('Upload and delete the file.', (done) => {
+        const file = new Date().getTime() + 'test.log.gz';
+        fs.writeFile(file, 'Test file.', () => {});
+        const uploader = new LogUploader(5000, '.', conf);
 
-        uploader.start()
+        uploader.start();
 
-        setTimeout(function () {
-            uploader.stop()
-            expect(fs.existsSync(file)).to.equal(false)
-            done()
-        }, 10000)
-    }).timeout(20000)
-})
+        setTimeout(() => {
+            uploader.stop();
+            expect(fs.existsSync(file)).to.equal(false);
+            done();
+        }, 10000);
+    }).timeout(20000);
+});

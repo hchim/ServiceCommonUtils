@@ -1,32 +1,32 @@
 /**
  * Created by huiche on 2/26/17.
  */
-var assert = require('assert');
-var expect = require('Chai').expect;
-var utils = require('../index');
+const assert = require('assert');
+const expect = require('Chai').expect;
+import {nestedReqField} from '../index';
 
-describe('nestedReqField functions', function () {
-    describe('nestedReqField OKhttp', function () {
-        it('should parse nested field for OKHttp', function (done) {
-            body = {
+describe('nestedReqField functions', () => {
+    describe('nestedReqField OKhttp', () => {
+        it('should parse nested field for OKHttp', (done) => {
+            const body = {
                 fieldName1: {
                     fieldName2 : 2
                 }
-            }
+            };
 
-            expect(utils.nestedReqField(body, 'fieldName1', 'fieldName2')).to.equal(2)
-            done()
-        })
-    })
+            expect(nestedReqField(body, 'fieldName1', 'fieldName2')).to.equal(2);
+            done();
+        });
+    });
 
-    describe('nestedReqField simple request', function () {
-        it('should parse nested field for simple request', function (done) {
-            body = {
+    describe('nestedReqField simple request', () => {
+        it('should parse nested field for simple request', (done) => {
+            const body = {
                 'fieldName1[fieldName2]': 2
-            }
+            };
 
-            expect(utils.nestedReqField(body, 'fieldName1', 'fieldName2')).to.equal(2)
-            done()
-        })
-    })
-})
+            expect(nestedReqField(body, 'fieldName1', 'fieldName2')).to.equal(2);
+            done();
+        });
+    });
+});

@@ -1,19 +1,19 @@
-var mongoose = require('mongoose');
-const winston = require('winston')
+const mongoose = require('mongoose');
+const winston = require('winston');
 
 mongoose.Promise = require('bluebird');
 
-function connectDB(conf) {
-    var dbUrl = conf.get('mongodb.url');
-    var env = conf.get('env');
+const connectDB = (conf) => {
+    const dbUrl = conf.get('mongodb.url');
+    const env = conf.get('env');
 
-    var options = {
+    const options = {
         useMongoClient: true,
         keepAlive: true,
         socketTimeoutMS: 30000
     };
 
-    mongoose.connect(dbUrl, options, function (error) {
+    mongoose.connect(dbUrl, options, (error) => {
         if(error) {
             winston.log('error', 'Failed to connect to mongodb.', error);
             return;
@@ -24,28 +24,28 @@ function connectDB(conf) {
         }
     });
 
-    mongoose.connection.on('disconnected', function(){
+    mongoose.connection.on('disconnected', () => {
         winston.log('info', 'Lost MongoDB connection.');
         //Reconnect every 5 seconds.
         setTimeout(connectDB, 5000, conf);
     });
 
-    mongoose.connection.on('connected', function() {
+    mongoose.connection.on('connected', () => {
         winston.log('info', 'Connected to mongodb.');
     });
 
-    mongoose.connection.once('open', function() {
+    mongoose.connection.once('open', () => {
         winston.log('info', 'Mongodb connection open.');
     });
 
-    mongoose.connection.on('error', function() {
+    mongoose.connection.on('error', () => {
         winston.log('info', 'Could not connect to mongodb.');
         mongoose.disconnect();
     });
 
-    mongoose.connection.on('reconnected', function() {
+    mongoose.connection.on('reconnected', () => {
         winston.log('info', 'Reconnected to mongodb.');
     });
-}
+};
 
-module.exports.connectDB = connectDB;
+export { connectDB };
