@@ -34,7 +34,7 @@ const uploadLogs = (logDir, conf, s3Client) => {
 /*
  * This class periodically upload the .log.gz files in the log directory to s3 bucket.
  */
-class LogUploader {
+export class LogUploader {
     constructor(executeInterval, logDir, conf) {
         this.isActive = false;
         this.executeInterval = executeInterval;
@@ -66,5 +66,3 @@ class LogUploader {
         }
     }
 }
-
-export default LogUploader;

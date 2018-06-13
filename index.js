@@ -2,7 +2,7 @@ const redis = require('redis');
 const winston = require('winston');
 const AWS = require('aws-sdk');
 
-import LogUploader from './LogUploader';
+import { LogUploader } from './LogUploader';
 import {connectDB} from './MongooseHelper';
 import commonConfigs from './CommonConfig';
 
